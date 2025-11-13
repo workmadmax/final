@@ -6,7 +6,7 @@
 #    By: mdouglas <mdouglas@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/13 13:03:49 by mdouglas          #+#    #+#              #
-#    Updated: 2025/11/13 14:28:37 by mdouglas         ###   ########.fr        #
+#    Updated: 2025/11/13 16:08:58 by mdouglas         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,13 @@ import os
 from src.data_pipeline import load_and_preprocess_data
 from src.model_pipeline import train_and_evaluate_pipeline, evaluate_model
 
-DATA_PATH = './data/spam.csv' 
+
+ROOT_DIR = '.'
+
+os.makedirs(os.path.join(ROOT_DIR, 'data/visualizations'), exist_ok=True) 
+os.makedirs(os.path.join(ROOT_DIR, 'models'), exist_ok=True)
+
+DATA_PATH = os.path.join(ROOT_DIR, 'data/spam.csv')
 
 def run_pipeline():
     """ execute the full data and model pipeline """

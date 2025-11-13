@@ -16,9 +16,9 @@ Para configurar o ambiente, utilize o arquivo `requirements.txt` fornecido.
 
 ---
 
-## 🛠️ Execução do Projeto (`app.py`)
+## 🛠️ Execução do Projeto (`main.py`)
 
-O script `app.py` executa o fluxo completo do modelo de Machine Learning:
+O script `main.py` executa o fluxo completo do modelo de Machine Learning:
 
 ### Etapas do Script
 
