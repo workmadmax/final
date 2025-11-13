@@ -4,3 +4,5 @@
 .venv
 *.zip
 __pycache__/
+*.pyc
+madmax
