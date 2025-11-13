@@ -6,11 +6,9 @@
 #    By: mdouglas <mdouglas@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/13 10:58:17 by mdouglas          #+#    #+#              #
-#    Updated: 2025/11/13 13:45:49 by mdouglas         ###   ########.fr        #
+#    Updated: 2025/11/13 13:52:51 by mdouglas         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-
-# src/data_pipeline.py
 
 import pandas as pd
 import re
@@ -20,10 +18,10 @@ import matplotlib.pyplot as plt
 GREEN = '\033[92m'
 ENDC = '\033[0m'
 
-def	load_dataset(file_path, encondig='latin-1'):
+def	load_dataset(file_path, encoding='latin-1'):
 	"""load dataset from a CSV file."""
 	try:
-		df = pd.read_csv(file_path, encoding=encondig)
+		df = pd.read_csv(file_path, encoding=encoding)
 		print(f"{GREEN}✅ Dataset load successfully!{ENDC}")
 		return (df)
 	except FileNotFoundError:
@@ -47,13 +45,6 @@ def	process_message(df):
 	"""Apply text cleaning to the 'message' column."""
 	df['message'] = df['message'].apply(clean_text)
 	return (df)
-
-import os
-import matplotlib.pyplot as plt
-# ... (outros imports)
-
-GREEN = '\033[92m'
-ENDC = '\033[0m'
 
 def plot_class_distribution(df):
     """Plot the distribution of classes in the dataset."""
