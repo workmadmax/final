@@ -6,7 +6,7 @@
 #    By: mdouglas <mdouglas@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/12 12:46:38 by mdouglas          #+#    #+#              #
-#    Updated: 2025/11/12 21:34:55 by mdouglas         ###   ########.fr        #
+#    Updated: 2025/11/12 13:23:58 by mdouglas         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,33 +19,20 @@ from sklearn.metrics import accuracy_score, classification_report, confusion_mat
 import seaborn as sns
 import matplotlib.pyplot as plt
 
-import re
-
 # === 1. Carregar dados ===
 df = pd.read_csv('data/spam.csv', encoding='latin-1')
 df = df.rename(columns={'v1': 'label', 'v2': 'message'})
 df = df[['label', 'message']]
+
+# Converter labels
 df['label'] = df['label'].map({'ham': 0, 'spam': 1})
 
-# pre processamento simples
-
-def preprocess(text):
-    text = text.lower()
-    text = re.sub(r'[^a-zA-Z\s]', '', text)
-    return text
-
-df['clean_message'] = df['message'].apply(preprocess)
-print("Antes do preprocessamento:\n", df['message'].head())
-print("\nDepois do preprocessamento:\n", df['clean_message'].head())
-
-# divisao treinamento e teste
+# === 2. Dividir dados ===
 X_train, X_test, y_train, y_test = train_test_split(
     df['message'], df['label'], test_size=0.2, random_state=42
 )
 
-
-# === 3. Vetorização === TF-IDF Vectorization
-
+# === 3. Vetorização ===
 vectorizer = TfidfVectorizer(stop_words='english')
 X_train_vec = vectorizer.fit_transform(X_train)
 X_test_vec = vectorizer.transform(X_test)
@@ -70,5 +57,4 @@ plt.xlabel('Predito')
 plt.ylabel('Real')
 plt.title('Matriz de Confusão - Classificação de SMS')
 plt.savefig('confusion_matrix.png')
-#plt.show()
-
+plt.show()
